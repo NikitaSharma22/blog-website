@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Nikita - Nikita's Corner</title>
+  <style>
+    /* Embedded CSS */
+    :root {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --accent-color: #82b1ff;
+      --card-bg: #1e1e1e;
+      --hover-bg: #2c2c2c;
+      --transition-speed: 0.3s;
+      --content-max-width: 800px; /* Max width for content readability */
+    }
+
+    body.light-mode {
+      --bg-color: #f5f5f5;
+      --text-color: #1e1e1e;
+      --accent-color: #3f51b5;
+      --card-bg: #ffffff;
+      --hover-bg: #e0e0e0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.7;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--text-color);
+      position: relative;
+      transition: color var(--transition-speed);
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width var(--transition-speed);
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+     nav a:hover {
+      color: var(--accent-color);
+    }
+
+    #theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color var(--transition-speed);
+    }
+
+    #theme-toggle:hover {
+      color: var(--accent-color);
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content sections */
+    }
+
+    .content-section {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: var(--content-max-width);
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+    }
+    
+    .content-section h1 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-section p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: var(--text-color); /* Ensure paragraph text color uses variable */
+    }
+    
+    body.light-mode .content-section p {
+        color: #333; /* Specific paragraph color for light mode content */
+    }
+
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--card-bg);
+      color: #888;
+      margin-top: auto; /* Pushes footer to bottom */
+    }
+    body.light-mode footer {
+        color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Nikita's Corner</div>
+    <nav>
+      <a href="/blog.html">Home</a>
+      <a href="/articles.html">Articles</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">☯</button>
+  </header>
+
+  <main>
+    <section class="content-section">
+  <h1>Hi, my name is Nikita.</h1>
+  <p>
+    I’m 18 and a college student. I think a lot, maybe more than I should, about life, people, and the small everyday things that others might miss.
+  </p>
+  <p>
+    This is my space to pause and process. I write about the books I love, movies that stay with me, and the strange thoughts that come out of nowhere, from dreams of faraway places to memories of family. Sometimes it’s light and soft. Sometimes it’s heavy and sad. But it’s always honest.
+  </p>
+  <p>
+    When I’m not writing, I’m usually reading late into the night, doing random coding, or zoning out. I’m still figuring out who I am, but I know I love stories, small kindnesses, and that feeling you get when something finally makes sense.
+  </p>
+  <p>
+    Thanks for being here. I hope you find something that feels familiar.
+  </p>
+</section>
+
+  </main>
+
+  <footer>
+    <p>© Nikita's Corner.</p>
+  </footer>
+
+  <script>
+    // Embedded Theme Toggle JavaScript
+    (function() {
+      const themeToggleButton = document.getElementById('theme-toggle');
+      const bodyElement = document.body;
+
+      // Apply saved theme on load
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        bodyElement.classList.add(savedTheme);
+      } else {
+        // Optional: Set a default theme if none is saved, e.g., dark mode
+        // bodyElement.classList.add('dark-mode-default-if-needed'); 
+      }
+
+      if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', () => {
+          bodyElement.classList.toggle('light-mode');
+          if (bodyElement.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light-mode');
+          } else {
+            localStorage.removeItem('theme'); // Prefer removing for default (dark)
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

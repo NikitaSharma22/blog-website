@@ -1,0 +1,236 @@
+/* Base Styles */
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --accent-color: #82b1ff;
+  --card-bg: #1e1e1e;
+  --hover-bg: #2c2c2c;
+  --secondary-text-color: #b0b0b0; /* For less prominent text like dates, subtitles */
+  --transition-speed: 0.3s;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  position: relative; /* Changed from 'center' to 'relative' for ::after positioning */
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width var(--transition-speed);
+  position: absolute;
+  bottom: -4px; /* Adjust as needed */
+  left: 0;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+#theme-toggle:hover {
+  color: var(--accent-color);
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--card-bg), var(--bg-color)); /* Use variables for consistency */
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--secondary-text-color); /* Use variable for hero paragraph */
+  font-style: italic;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.post-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.post-card:hover {
+  background-color: var(--hover-bg);
+  transform: translateY(-5px);
+}
+
+.post-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem; /* Added margin for spacing from date */
+  color: var(--accent-color);
+}
+
+.post-card .post-date { /* Styling for the new date paragraph */
+  font-size: 0.85rem;
+  color: var(--secondary-text-color);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.post-card p { /* This will style the summary paragraph */
+  color: #c0c0c0; /* Kept specific color if intended to be different from --text-color or --secondary-text-color for summary */
+  /* If you want it to use the main text color, use: color: var(--text-color); */
+  /* If you want it slightly dimmer like dates, use: color: var(--secondary-text-color); */
+  margin-top: 0; /* Reset margin if .post-date is directly above */
+}
+
+
+.post-card a {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  color: #888; /* Kept specific, can be changed to a variable if desired */
+}
+
+/* Light Mode */
+body.light-mode {
+  --bg-color: #f5f5f5;
+  --text-color: #1e1e1e;
+  --accent-color: #3f51b5; /* A deeper blue for light mode */
+  --card-bg: #ffffff;
+  --hover-bg: #e0e0e0;
+  --secondary-text-color: #555555; /* Light mode secondary text */
+}
+
+/* Specific overrides for light mode if variable changes are not sufficient */
+body.light-mode .hero p {
+  color: #444; /* Specific override if --secondary-text-color isn't quite right for this context */
+}
+
+body.light-mode .post-card p { /* This targets summary paragraph in light mode */
+  color: #555; /* Specific override for summary text in light mode */
+}
+
+body.light-mode footer {
+  color: #777; /* Specific override for footer text in light mode */
+}
+
+/* Styles for single post page (post.html) */
+.post-full {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.post-full .post-card { /* Reusing .post-card for styling consistency but on a single post */
+  max-width: 800px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+.post-full .post-card .post-date { /* Ensure date style is applied here too if used */
+    margin-bottom: 1rem; /* More space below date on full post */
+}
+
+
+/* Styling for the heading on blog.html */
+.posts-heading-container {
+  padding: 0 2rem; 
+  margin-bottom: 0.5rem; 
+}
+
+.section-title {
+  margin: 2rem 1rem 1rem;
+  padding: 1rem 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-color); 
+  background: rgba(255, 255, 255, 0.05); 
+  border: 2px solid var(--accent-color); 
+  border-radius: 0.5rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.section-title:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for sort controls on articles.html */
+.sort-controls-container {
+  padding: 0 2rem; 
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+.sort-controls-container label {
+  margin-right: 0.75rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.sort-controls-container select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--hover-bg); 
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline-color: var(--accent-color); 
+}
+
+.sort-controls-container select option {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}

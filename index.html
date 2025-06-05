@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Nikita's Corner</div>
+    <nav>
+      <a href="/blog.html">Home</a>
+      <a href="/articles.html">Blogs</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">☯</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Like a diary, but less secretive.</h1>
+      <p>🙶I write entirely to find out what I'm thinking, what I'm looking at, what I see and what it means.🙷</p>
+    </section>
+     
+    <div class="posts-heading-container">
+      <h2 class="section-title">Latest Insights</h2>
+    </div>
+
+    <section class="posts" id="post-container"> 
+      <article class="post-card">
+        <h2>The Mind Games We Play</h2>
+        <p class="post-date">June 1, 2025</p> {/* Placeholder, will be updated by JS if dynamic */}
+        <p>Explore common mental biases that affect our thinking, from confirmation bias to the spotlight effect.</p>
+        <a href="/post.html?id=mind-games">Read More →</a>
+      </article>
+      <article class="post-card">
+        <h2>Insights from Mindset by Carol Dweck</h2>
+        <p class="post-date">June 2, 2025</p> {/* Placeholder, will be updated by JS if dynamic */}
+        <p>Thoughts on how shifting from a fixed mindset to a growth mindset can change the way we learn, grow, and succeed.</p>
+        <a href="/post.html?id=mindset">Read More →</a>
+      </article>
+      <article class="post-card">
+        <h2>Chess: A Fun and Effective Game</h2>
+        <p class="post-date">June 3, 2025</p> 
+        <p>A personal take on the mental and social benefits of playing chess, and why it’s a great game to share with others.</p>
+        <a href="/post.html?id=chess">Read More →</a>
+      </article>
+      </section>
+  </main>
+
+  <footer>
+    <p>© Nikita's Corner.</p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

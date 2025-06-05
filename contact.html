@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Nikita - Nikita's Corner</title>
+  <style>
+    /* Embedded CSS - Same as about.html for consistency, plus form styles */
+    :root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent-color: #82b1ff; /* Blue accent for dark mode */
+    --card-bg: #1e1e1e;
+    --hover-bg: #2c2c2c;
+    --transition-speed: 0.3s;
+    --content-max-width: 700px;
+    --input-bg: #2a2a2a;
+    --input-border: #444;
+    --button-bg: var(--accent-color);
+    --button-text: #000; /* Dark text for better contrast on blue */
+    --button-hover-bg: #6c9eff;
+    --separator-color: var(--input-border);
+  }
+
+  body.light-mode {
+    --bg-color: #f5f5f5;
+    --text-color: #1e1e1e;
+    --accent-color: #3f51b5; /* Different blue for light mode */
+    --card-bg: #ffffff;
+    --hover-bg: #e0e0e0;
+    --input-bg: #f0f0f0;
+    --input-border: #ccc;
+    --button-hover-bg: #3345a0;
+    --button-text: #fff; /* White text for light mode button */
+    --separator-color: var(--input-border);
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+    transition: color var(--transition-speed);
+  }
+
+  nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width var(--transition-speed);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+  nav a:hover {
+    color: var(--accent-color);
+  }
+
+  #theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color var(--transition-speed);
+  }
+
+  #theme-toggle:hover {
+    color: var(--accent-color);
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-section {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: var(--content-max-width);
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    margin-bottom: 2rem;
+    /* Centering content within this section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .content-section h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  /* General paragraph styling within content-section */
+  .content-section > p { /* Targeting the first intro paragraph */
+    text-align: center;
+    margin-bottom: 2rem; /* More space after intro before form */
+    font-size: 1.1rem;
+  }
+  body.light-mode .content-section > p {
+    color: #444;
+  }
+
+
+  /* Form Styles */
+  .contact-form {
+    width: 100%; /* Form takes full width of its centered container */
+    max-width: 500px; /* Optional: constrain form width slightly */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the button inside the form */
+    margin-bottom: 2rem; /* Space after the form, before the separator line */
+  }
+
+  .contact-form div { /* Each form field container */
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-align: left; /* Keep labels left-aligned for readability */
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  body.light-mode .contact-form input[type="text"],
+  body.light-mode .contact-form input[type="email"],
+  body.light-mode .contact-form textarea {
+    background-color: #fff; /* Lighter input for light mode */
+    border-color: #bbb;
+    color: #222;
+  }
+
+  .contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .contact-form button[type="submit"] {
+    display: inline-block;
+    padding: 0.8rem 2rem; /* Slightly more padding */
+    background-color: var(--button-bg); /* Accent color */
+    color: var(--button-text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    margin-top: 0.5rem; /* Space above the button within the form */
+  }
+  .contact-form button[type="submit"]:hover {
+    background-color: var(--button-hover-bg);
+  }
+
+  /* Separator line style (between form and direct contact) */
+  .direct-contact::before {
+    content: "";
+    display: block;
+    width: 80%; /* Width of the line */
+    max-width: 300px; /* Max width of the line */
+    height: 1px;
+    background-color: var(--separator-color);
+    margin: 0 auto 2rem auto; /* Centering the line and space below it */
+  }
+
+  .direct-contact {
+    text-align: center; /* Center all text content within .direct-contact */
+    width: 100%;
+    max-width: 500px; /* Optional: constrain width */
+  }
+
+  .direct-contact h2 {
+    font-size: 1.5rem; /* Original size */
+    color: var(--text-color); /* Ensure it inherits correctly */
+    margin-top: 0; /* Reset margin if ::before adds space */
+    margin-bottom: 1rem;
+    border-bottom: none; /* Remove previous border if any */
+    padding-bottom: 0; /* Remove previous padding if any */
+  }
+  body.light-mode .content-section .direct-contact h2 { /* Specific for light mode h2 */
+    color: #333;
+  }
+  
+  .direct-contact h3 {
+    font-size: 1.1rem;
+    font-weight: normal; /* Less bold */
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+   body.light-mode .direct-contact h3 {
+      color: #444;
+   }
+
+
+  .direct-contact p { /* General paragraphs within direct-contact */
+    margin-bottom: 0.5rem;
+    font-size: 1rem; /* Slightly smaller than main intro p */
+    color: var(--text-color);
+  }
+  body.light-mode .direct-contact p {
+    color: #555;
+  }
+
+  .direct-contact a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500; /* Make links slightly bolder */
+  }
+  .direct-contact a:hover {
+    text-decoration: underline;
+  }
+
+  .social-links { /* This is a <p> tag in your HTML */
+    margin-top: 1rem; /* Space above social media links */
+  }
+  .social-links a {
+    margin: 0 10px; /* Spacing between social links */
+    font-size: 1.1rem; /* Adjust size if needed */
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    color: #888; /* Muted color for footer text */
+    margin-top: auto; /* Pushes footer to the bottom */
+  }
+  body.light-mode footer {
+    color: #777;
+  }
+</style>                
+</head>
+<body>
+  <header>
+    <div class="logo">Nikita's Corner</div>
+    <nav>
+      <a href="/blog.html">Home</a>
+      <a href="/articles.html">Articles</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">☯</button>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <h1>Let's Connect!</h1>
+      <p>
+        I'd love to hear from you! Whether you want to share your thoughts on a post, recommend a book, or just say hello.
+      </p>
+
+      <form action="https://formspree.io/f/xyzjzkap" method="POST" class="contact-form">
+        <div>
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="_replyto" required>
+        </div>
+        <div>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="direct-contact">
+        <h2>Or reach out directly:</h2>
+        <p>Email: <a href="mailto:nikitasharma2265@example.com">nikitasharma2265@example.com</a></p>
+        <h3>Follow me on social media for daily updates and behind-the-scenes moments!</h3>
+        <p class="social-links">
+          <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">Twitter</a> &bull;
+          <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">Instagram</a> &bull;
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© Nikita's Corner.</p>
+  </footer>
+
+  <script>
+    // Embedded Theme Toggle JavaScript
+    (function() {
+      const themeToggleButton = document.getElementById('theme-toggle');
+      const bodyElement = document.body;
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        bodyElement.classList.add(savedTheme);
+      }
+      if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', () => {
+          bodyElement.classList.toggle('light-mode');
+          if (bodyElement.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light-mode');
+          } else {
+            localStorage.removeItem('theme');
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
